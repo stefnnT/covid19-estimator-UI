@@ -10,7 +10,7 @@ const launch = _ => {
   welcomeMessage.classList.add('hide');
   launchButton.classList.add('hide');
   spinner.classList.add('show');
-  setTimeout (showEstimator, Math.random() * 4000);
+  setTimeout (showEstimator, Math.random() * 3000);
 }
 
 const showEstimator = _ => {
