@@ -342,6 +342,35 @@ div.welcome-message{
 
 }
 
+
+@keyframes spin {
+  to {
+      transform: rotateZ(360deg);
+  }
+}
+
+.spin {
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+
+  border-width: .4rem;
+  border-color: grey;
+  border-style: double;
+  border-radius: 10%;
+  opacity: .8;
+  
+  animation: spin .6s linear infinite alternate-reverse;
+  display: none;
+
+}
+
+
+.show {
+  display: block;
+}
+
+
 @media screen and (max-width:370px) {
  .banner {
     font-size: 1.5rem ;

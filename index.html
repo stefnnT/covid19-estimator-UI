@@ -23,6 +23,8 @@
         <div class="continue-info"><span class="important">**</span> press launch button below to start the estimator </div>
         
         <article class="splash">
+          <div class="spin"></div>
+          
           <div class="welcome-message">
             <h1 class="title">
               Welcome to COVID-19 impact estimator
@@ -57,10 +59,10 @@
 
               <div class="form-input">
                 <label for="period-type">Period type <span class="important">**</span>:</label>
-                <select name="period-type" id="period-type">
-                  <option value="days" data-period-type="days" selected>days</option>
-                  <option value="weeks" data-period-type="weeks">weeks</option>
-                  <option value="months" data-period-type="months">months</option>
+                <select name="period-type" id="period-type" data-period-type>
+                  <option value="days" selected>days</option>
+                  <option value="weeks">weeks</option>
+                  <option value="months">months</option>
                 </select>
               </div>
               

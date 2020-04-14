@@ -2,12 +2,21 @@ const welcomeMessage = document.querySelector('.welcome-message');
 const launchButton = document.querySelector('.launch-button');
 const formSection = document.querySelector('.forms-wrapper');
 const formButton = document.querySelector('.form-button');
+const hint = document.querySelector('.continue-info');
+const spinner = document.querySelector('.spin');
 
 const launch = _ => {
-  formSection.classList.remove('hide');
-  formButton.classList.remove('hide');
+  hint.classList.add('hide');
   welcomeMessage.classList.add('hide');
   launchButton.classList.add('hide');
+  spinner.classList.add('show');
+  setTimeout (showEstimator, Math.random() * 4000);
+}
+
+const showEstimator = _ => {
+  formSection.classList.remove('hide');
+  formButton.classList.remove('hide');
+  spinner.classList.remove('show')
 }
 
 const normalizedDays = (periodType, periodCount) => {
