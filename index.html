@@ -1,85 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="covid-19 impact estimator">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu+2|Poppins|Raleway&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container bg">
-    <section class="navigation">
-      <div class="header">
-        <div class="banner">impact estimator</div>
-        <!-- <div class="about-app"></div> -->
-      </div>
-    </section>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="covid-19 impact estimator">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu+2|Poppins|Raleway&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container bg">
+            <section class="navigation">
+                <div class="header">
+                    <!-- <div>imgs</div> -->
+                    <div class="banner">GRADER</div>
+                    <!-- <div class="about-app"></div> -->
+                </div>
+            </section>
 
-    <section class="content-container">
-      <div class="content">
-        
-        <div class="continue-info"><span class="important">**</span> press launch button below to start the estimator </div>
-        
-        <article class="splash">
-          <div class="spin"></div>
+            <section class="content-container">
+                <div class="content">
 
-          <div class="welcome-message">
-            <h1 class="title">
-              Welcome to COVID-19 impact estimator
-            </h1> 
-            <span class="info">This application gives you the estimate impact of the covid-19 pandemic based on the values you provide </span>
-          </div>
+                    <div class="continue-info">
+                        <span class="important">**</span>
+                        press launch button below to start the calculator
+                    </div>
 
-          <div class="forms-wrapper hide">
-            <p>Provide the following info to get the estimated impact</p>
-            <form class="form" action="">
-              
-              <div class="form-input">
-                <label for="population">Region Population <span class="important">*</span>:</label>
-                <input type="number" id="population" data-population>
-              </div>
+                    <article class="splash">
+                        <div class="spin"></div>
 
-              
-              <div class="form-input">
-                <label for="reported-cases">Total reported cases <span class="important">*</span>:</label>
-                <input type="number" id="reported-cases" data-reported-cases>
-              </div>
-              
-              <div class="form-input">
-                <label for="total-hospital-beds">Total hospital beds <span class="important">*</span>:</label>
-                <input type="number" id="total-hospital-beds" data-total-hospital-beds>
-              </div>
-              
-              <div class="form-input">
-                <label for="time-to-elapse">Period of estimation <span class="important">*</span>:</label>
-                <input type="number" id="time-to-elapse" data-time-to-elapse>
-              </div>
+                        <div class="welcome-message">
+                            <h1 class="title">
+                                Welcome to GRADER
+                            </h1>
+                            <span class="info">GRADER is an easy-to-use GPA calculator
+                            </span>
+                        </div>
 
-              <div class="form-input">
-                <label for="period-type">Period type <span class="important">*</span>:</label>
-                <select name="period-type" id="period-type" data-period-type>
-                  <option value="days" selected>days</option>
-                  <option value="weeks">weeks</option>
-                  <option value="months">months</option>
-                </select>
-              </div>
-              
-            </form>
-          </div>
-          
-        </article>
-        
-        
-        <section class="next-submit">
-            <button class="launch-button" type="submit">launch</button>
-            <button class="form-button hide" type="submit" data-go-estimate>estimate</button>
-        </section>
+                        <div class="forms-wrapper hide">
+                          <div style="margin-bottom: 2rem;"></div>
+                            <!-- <p>Provide the following info to get the estimated impact</p> -->
+                            <form class="form" action="">
 
-      </div>
-    </section>
-  </div>
-  <script src="script.js"></script>
-</body>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <table class="table">
+                                            <caption>
+                                              <div class="gpa hide">
+                                                GPA: <span id="gpa"></span>
+                                              </div>
+                                            </caption>
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-width-10 bold-text align-center">NO</th>
+                                                    <th class="col-width-25 bold-text align-center">Course</th>
+                                                    <th class="col-width-25 bold-text align-center">Score</th>
+                                                    <th class="col-width-25 bold-text align-center">Unit</th>
+                                                    <th class="col-width-10 bold-text align-center"></th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr data-no="1">
+                                                    <td class="align-center">1</td>
+                                                    <td class="align-center"><input required data-course class="course" type="text"></td>
+                                                    <td class="align-center">
+                                                      <select name="grade" id="" required>
+                                                        <option value="--" disabled selected>--</option>
+                                                        <option value="4.0">A</option>
+                                                        <option value="3.5">AB</option>
+                                                        <option value="3.25">B</option>
+                                                        <option value="3.0">BC</option>
+                                                        <option value="2.75">C</option>
+                                                        <option value="2.5">CD</option>
+                                                        <option value="2.25">D</option>
+                                                        <option value="2.00">E</option>
+                                                        <option value="0">F</option>
+                                                      </select>
+                                                      <!-- <input data-score class="grade" type="number" min="0" max="100"> -->
+                                                    </td>
+                                                    <td class="align-center"><input required data-unit class="unit" type="number" min="0" max="7"></td>
+                                                    <td class="align-center">
+                                                      <div style="font-weight: bold; color: royalblue">del</div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="seperator">
+                                        <span>
+                                            add course
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- <div class="form-input">
+                                                                                                        <label for="population">Region Population <span class="important">*</span>:</label>
+                                                                                                        <input type="number" id="population" data-population>
+                                                                                                      </div>
+                                                                                        
+                                                                                                      
+                                                                                                      <div class="form-input">
+                                                                                                        <label for="reported-cases">Total reported cases <span class="important">*</span>:</label>
+                                                                                                        <input type="number" id="reported-cases" data-reported-cases>
+                                                                                                      </div>
+                                                                                                      
+                                                                                                      <div class="form-input">
+                                                                                                        <label for="total-hospital-beds">Total hospital beds <span class="important">*</span>:</label>
+                                                                                                        <input type="number" id="total-hospital-beds" data-total-hospital-beds>
+                                                                                                      </div>
+                                                                                                      
+                                                                                                      <div class="form-input">
+                                                                                                        <label for="time-to-elapse">Period of estimation <span class="important">*</span>:</label>
+                                                                                                        <input type="number" id="time-to-elapse" data-time-to-elapse>
+                                                                                                      </div>
+                                                                                        
+                                                                                                      <div class="form-input">
+                                                                                                        <label for="period-type">Period type <span class="important">*</span>:</label>
+                                                                                                        <select name="period-type" id="period-type" data-period-type>
+                                                                                                          <option value="days" selected>days</option>
+                                                                                                          <option value="weeks">weeks</option>
+                                                                                                          <option value="months">months</option>
+                                                                                                        </select>
+                                                                                                      </div> -->
+
+                            </form>
+                        </div>
+
+                    </article>
+
+
+                    <section class="next-submit">
+                        <button class="launch-button" type="submit">launch</button>
+                        <button class="form-button hide" type="submit" data-go-estimate>estimate</button>
+                    </section>
+
+                </div>
+            </section>
+        </div>
+        <script src="script.js"></script>
+    </body>
 </html>

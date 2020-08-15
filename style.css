@@ -88,7 +88,114 @@ body {
 }
 
 
+/** FOR DYNAMIC TABLE SIZING AND TEXTS CONTROL  **/
+/* column width control */  
+.table>tbody>tr>td, .table>tbody>tr>th, 
+.table>tfoot>tr>td, .table>tfoot>tr>th, 
+.table>thead>tr>td, .table>thead>tr>th {
+    line-height: 1.42857143;
+}
 
+
+table {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 0;
+}
+
+th {
+    text-transform: uppercase;
+    font-size: 12px !important;
+    /* font-weight: bold; */
+    line-height: 14px;
+    letter-spacing: 1.2px;
+    color: #B0BAC9;
+    border: px solid red !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+td {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    /* vertical-align: center; */
+    border: 1px solid red !important;
+    padding: 0px 0px !important;
+    color: #202224;
+    text-align: center;
+    /* padding-left: 15px !important; */
+    /* padding-right: 15px !important; */
+}
+
+tr {
+    background-color: white;
+    height: 35px;
+    border-bottom: 8px solid rgba(244, 246, 252);
+}
+
+thead tr {
+    height: 20px;
+    border-top: none !important;
+}
+
+.col-width-10 {
+  width: 10%;
+}
+
+.col-width-35 {
+  width: 35%;
+}
+
+.col-width-20 {
+  width: 20%;
+}
+
+.col-width-25 {
+  width: 25%;
+}
+
+
+.seperator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.seperator::before, .seperator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1.8px solid #E4E8F0;
+}
+
+.seperator span {
+  padding-left: 2em;
+  padding-right: 2em;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 1.125px;
+  text-transform: uppercase;
+
+  color: #2E5BFF;
+}
+
+select {
+  padding: 10px;
+  margin: 0;
+}
+
+input, select {
+  width: 100%;
+  line-height: 2.5;
+  border: none;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #b0bac954;
+}
 
 
 .content-container {
@@ -302,6 +409,13 @@ div.welcome-message{
 }
 
 @media screen and (max-width: 687px) and (min-width: 280px) {
+  
+  table {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 0;
+  }
+  
   .header, .content {
     flex-basis: 97%;
   }
@@ -383,4 +497,12 @@ div.welcome-message{
 
 .show {
   display: flex;
+}
+
+.gpa {
+  margin-left: 1rem;
+  text-align: center;
+  padding: 1rem 1rem;
+  margin: 1rem;
+  background-color: rgba(1, 80, 1, 0.247);
 }

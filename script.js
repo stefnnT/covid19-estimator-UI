@@ -4,13 +4,14 @@ const formSection = document.querySelector('.forms-wrapper');
 const formButton = document.querySelector('.form-button');
 const hint = document.querySelector('.continue-info');
 const spinner = document.querySelector('.spin');
+const addMore = document.querySelector('.seperator>span')
 
 const launch = _ => {
   hint.classList.add('hide');
   welcomeMessage.classList.add('hide');
   launchButton.classList.add('hide');
   spinner.classList.add('show');
-  setTimeout (showEstimator, Math.random() * 3000);
+  setTimeout (showEstimator, Math.random() * 30);
 }
 
 const showEstimator = _ => {
@@ -19,79 +20,61 @@ const showEstimator = _ => {
   spinner.classList.remove('show')
 }
 
-const normalizedDays = (periodType, periodCount) => {
-  let days;
-  switch (periodType) {
-    case 'days':
-      days = periodCount;
-      break;
-    case 'weeks':
-      days = periodCount * 7;
-      break;
-    case 'months':
-      days = periodCount * 30;
-      break;
-    default:
-      break;
-  }
-  return days;
-};
+const addRow = _ => {
+  const tr = document.querySelectorAll('tr').length
+  document.querySelector('tbody').innerHTML  += `
+  <tr data-no="${tr}">
+    <td class="align-center">${tr}</td>
+    <td class="align-center"><input required data-course class="course" type="text"></td>
+    <td class="align-center">
+      <select name="grade" id="" required>
+        <option value="--" disabled selected>--</option>
+        <option value="4.0">A</option>
+        <option value="3.5">AB</option>
+        <option value="3.25">B</option>
+        <option value="3.0">BC</option>
+        <option value="2.75">C</option>
+        <option value="2.5">CD</option>
+        <option value="2.25">D</option>
+        <option value="2.00">E</option>
+        <option value="0">F</option>
+      </select>
+    </td>
+    <td class="align-center"><input required data-unit class="unit" type="number" min="0" max="7"></td>
+    <td class="align-center">
+      <div style="font-weight: bold; color: royalblue">del</div>
+    </td>
+  </tr>
+  `
+}
 
-const ci = (reportedCases, severe = false) => {
-  const calc = !severe ? reportedCases * 10 : reportedCases * 50;
-  return calc;
-};
+const calculateGPA = _ => {
+  const courses = document.querySelectorAll('tr');
+  const gps = document.querySelector('.gpa');
 
-const ibrt = (currentlyInfected, days) => currentlyInfected * (2 ** Math.trunc(days / 3));
+  let unit = [];
+  let gradePoint = [];
+  let totalGradePoint = [];
+  let gpa = 0;
+  for(let i = 1; i < courses.length; i++) {
+    let unitVal = +courses[i].children[3].children[0].value
+    let gpVal = +courses[i].children[2].children[0].value
+    unit.push(unitVal);
+    gradePoint.push(gpVal);
+    totalGradePoint.push(unitVal * gpVal);
+  };
 
-const scbrt = (infected) => Math.trunc(infected * 0.15);
+  gpa = totalGradePoint.reduce(reducer) / unit.reduce(reducer);
+  
+  document.querySelector('#gpa').textContent = gpa;
+  console.log(gps.classList)
+  gps.classList.remove('hide');
+  gps.classList.add('show');
+}
 
-const hbbrt = (thb, { severeCasesByRequestedTime }) => {
-  const calc = Math.trunc((thb * 0.35) - severeCasesByRequestedTime);
-  return calc;
-};
-
-const cfibrt = ({ infectionsByRequestedTime }) => Math.trunc(infectionsByRequestedTime * 0.05);
-
-const cfvbrt = ({ infectionsByRequestedTime }) => Math.trunc(infectionsByRequestedTime * 0.02);
-
-const dif = ({ infectionsByRequestedTime },
-  { avgDailyIncomeInUSD, avgDailyIncomePopulation },
-  days) => {
-  const impact = infectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncomeInUSD;
-  const avgImpact = Math.trunc(impact / days);
-  return avgImpact;
-};
-
-const covid19ImpactEstimator = (data) => {
-  const impact = {};
-  const severeImpact = {};
-  const days = normalizedDays(data.periodType, data.timeToElapse);
-
-  impact.currentlyInfected = ci(data.reportedCases);
-  severeImpact.currentlyInfected = ci(data.reportedCases, true);
-
-  impact.infectionsByRequestedTime = ibrt(impact.currentlyInfected, days);
-  severeImpact.infectionsByRequestedTime = ibrt(severeImpact.currentlyInfected, days);
-
-  impact.severeCasesByRequestedTime = scbrt(impact.infectionsByRequestedTime);
-  severeImpact.severeCasesByRequestedTime = scbrt(severeImpact.infectionsByRequestedTime);
-
-  impact.hospitalBedsByRequestedTime = hbbrt(data.totalHospitalBeds, impact);
-  severeImpact.hospitalBedsByRequestedTime = hbbrt(data.totalHospitalBeds, severeImpact);
-
-  impact.casesForICUByRequestedTime = cfibrt(impact);
-  severeImpact.casesForICUByRequestedTime = cfibrt(severeImpact);
-
-  impact.casesForVentilatorsByRequestedTime = cfvbrt(impact);
-  severeImpact.casesForVentilatorsByRequestedTime = cfvbrt(severeImpact);
-
-  impact.dollarsInFlight = dif(impact, data.region, days);
-  severeImpact.dollarsInFlight = dif(severeImpact, data.region, days);
-
-  return { data, impact, severeImpact };
-};
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
 
+addMore.addEventListener('click', addRow); 
 launchButton.addEventListener('click', launch); 
-formButton.addEventListener('click', covid19ImpactEstimator); 
+formButton.addEventListener('click', calculateGPA); 
